@@ -1,36 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Teacher Login</title>
+  <title>Student Attendance</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container">
-    <h2>Teacher Login</h2>
-    <form id="loginForm">
-      <input type="text" id="username" placeholder="Enter Username" required>
-      <input type="password" id="password" placeholder="Enter Password" required>
-      <button type="submit">Login</button>
+    <h2>Attendance Form</h2>
+    <form id="attendanceForm">
+      <input type="text" name="regNo" placeholder="Enter Reg No" required>
+      <input type="text" name="name" placeholder="Enter Student Name" required>
+      <select name="status" required>
+        <option value="">Select Status</option>
+        <option value="Present">Present</option>
+        <option value="Absent">Absent</option>
+      </select>
+      <button type="submit">Submit</button>
     </form>
-    <p id="loginError" style="color: red; text-align: center;"></p>
+    <p id="response"></p>
   </div>
 
-  <script>
-    document.getElementById("loginForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-      const username = document.getElementById("username").value;
-      const password = document.getElementById("password").value;
-
-      // Simple login: Username + Password check
-      if ((username === "teacher1" && password === "pass123") ||
-          (username === "teacher2" && password === "pass456")) {
-        // Save login name for use in form
-        localStorage.setItem("teacherName", username);
-        window.location.href = "index.html";
-      } else {
-        document.getElementById("loginError").innerText = "Invalid credentials!";
-      }
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
