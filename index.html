@@ -1,26 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <title>Student Attendance</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Link external CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
   <div class="container">
     <h2>Attendance Form</h2>
     <form id="attendanceForm">
-      <input type="text" name="regNo" placeholder="Enter Reg No" required>
+      <input type="text" name="regNo" placeholder="Enter Registration No." required>
       <input type="text" name="name" placeholder="Enter Student Name" required>
+      
       <select name="status" required>
-        <option value="">Select Status</option>
+        <option value="">Select Attendance Status</option>
         <option value="Present">Present</option>
         <option value="Absent">Absent</option>
       </select>
-      <button type="submit">Submit</button>
+
+      <button type="submit">Submit Attendance</button>
     </form>
+
     <p id="response"></p>
   </div>
 
+  <!-- Link external JS -->
   <script src="script.js"></script>
 </body>
 </html>
