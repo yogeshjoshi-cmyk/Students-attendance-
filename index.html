@@ -1,66 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Student Attendance</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-      background: #f2f2f2;
-    }
-    .container {
-      max-width: 400px;
-      margin: auto;
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
-    }
-    input, select, button {
-      width: 100%;
-      padding: 10px;
-      margin-top: 10px;
-      font-size: 16px;
-    }
-    h2 {
-      text-align: center;
-    }
-  </style>
+  <title>Teacher Login</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container">
-    <h2>Attendance Form</h2>
-    <form id="attendanceForm">
-      <input type="text" name="regNo" placeholder="Enter Reg No" required>
-      <input type="text" name="name" placeholder="Enter Name" required>
-      <select name="status" required>
-        <option value="">Select Status</option>
-        <option value="Present">Present</option>
-        <option value="Absent">Absent</option>
-      </select>
-      <button type="submit">Submit</button>
+    <h2>Teacher Login</h2>
+    <form id="loginForm">
+      <input type="text" id="username" placeholder="Enter Username" required>
+      <input type="password" id="password" placeholder="Enter Password" required>
+      <button type="submit">Login</button>
     </form>
-    <p id="response" style="text-align:center; color: green; margin-top: 15px;"></p>
+    <p id="loginError" style="color: red; text-align: center;"></p>
   </div>
 
   <script>
-    const form = document.getElementById("attendanceForm");
-    form.addEventListener("submit", function(e) {
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
       e.preventDefault();
-      const formData = new FormData(form);
-      fetch("YOUR_GOOGLE_APPS_SCRIPT_WEB_URL", {
-        method: "POST",
-        body: formData
-      })
-      .then(res => res.text())
-      .then(data => {
-        document.getElementById("response").innerText = data;
-        form.reset();
-      })
-      .catch(error => {
-        document.getElementById("response").innerText = "Error saving attendance.";
-      });
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+
+      // Simple login: Username + Password check
+      if ((username === "teacher1" && password === "pass123") ||
+          (username === "teacher2" && password === "pass456")) {
+        // Save login name for use in form
+        localStorage.setItem("teacherName", username);
+        window.location.href = "index.html";
+      } else {
+        document.getElementById("loginError").innerText = "Invalid credentials!";
+      }
     });
   </script>
 </body>
