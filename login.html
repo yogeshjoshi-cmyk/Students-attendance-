@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Attendance</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Attendance Form</h2>
+    <form id="attendanceForm">
+      <input type="text" name="regNo" placeholder="Enter Reg No" required>
+      <input type="text" name="name" placeholder="Enter Student Name" required>
+      <select name="status" required>
+        <option value="">Select Status</option>
+        <option value="Present">Present</option>
+        <option value="Absent">Absent</option>
+      </select>
+      <button type="submit">Submit</button>
+    </form>
+    <p id="response" style="text-align:center; color: green; margin-top: 15px;"></p>
+  </div>
+
+  <script>
+    const form = document.getElementById("attendanceForm");
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const teacher = localStorage.getItem("teacherName") || "Unknown";
+      const formData = new FormData(form);
+      formData.append("teacher", teacher);
+
+      fetch("YOUR_GOOGLE_APPS_SCRIPT_URL", {
+        method: "POST",
+        body: formData
+      })
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("response").innerText = data;
+        form.reset();
+      });
+    });
+  </script>
+</body>
+</html>
